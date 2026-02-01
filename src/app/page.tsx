@@ -1,66 +1,56 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import dynamic from 'next/dynamic';
+import Header from '@/components/Header';
+import InfoBox from '@/components/InfoBox';
+import Sidebar from '@/components/Sidebar';
+import HomeSection from '@/components/sections/HomeSection';
+import WorksSection from '@/components/sections/WorksSection';
+import AboutSection from '@/components/sections/AboutSection';
+import ContactSection from '@/components/sections/ContactSection';
+
+// Dynamically import effects to avoid SSR issues
+const Antigravity = dynamic(() => import('@/components/Antigravity'), {
+  ssr: false,
+  loading: () => <div className="antigravity-container" />
+});
+
+const GlowTrail = dynamic(() => import('@/components/effects/GlowTrail'), {
+  ssr: false
+});
+
+const FloatingOrbs = dynamic(() => import('@/components/effects/FloatingOrbs'), {
+  ssr: false
+});
+
+const ScanLines = dynamic(() => import('@/components/effects/ScanLines'), {
+  ssr: false
+});
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Background Effects */}
+      <Antigravity />
+      <FloatingOrbs />
+      <ScanLines />
+      <GlowTrail />
+
+      <div className="main-container">
+        <Header />
+        <Sidebar />
+
+        <div className="content-wrapper">
+          <InfoBox />
+
+          <main className="main-content">
+            <HomeSection />
+            <WorksSection />
+            <AboutSection />
+            <ContactSection />
+          </main>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }
