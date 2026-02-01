@@ -692,6 +692,26 @@ section {
   cursor: not-allowed;
 }
 
+.form-message {
+  padding: 15px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-message.success {
+  background: rgba(0, 255, 136, 0.1);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  color: #00ff88;
+}
+
+.form-message.error {
+  background: rgba(255, 107, 107, 0.1);
+  border: 1px solid rgba(255, 107, 107, 0.3);
+  color: #ff6b6b;
+}
+
 .contact-info {
   display: flex;
   gap: 20px;

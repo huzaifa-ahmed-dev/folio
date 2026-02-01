@@ -9,17 +9,42 @@ export default function ContactSection() {
         message: '',
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitStatus('idle');
 
-        // Simulate form submission
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+                    subject: `New Contact from Portfolio: ${formData.name}`,
+                    from_name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                }),
+            });
 
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        setFormData({ name: '', email: '', message: '' });
-        setIsSubmitting(false);
+            const result = await response.json();
+
+            if (result.success) {
+                setSubmitStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+            } else {
+                setSubmitStatus('error');
+            }
+        } catch {
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -37,6 +62,7 @@ export default function ContactSection() {
                             <input
                                 type="text"
                                 id="name"
+                                name="name"
                                 value={formData.name}
                                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 placeholder="Your Name"
@@ -49,6 +75,7 @@ export default function ContactSection() {
                             <input
                                 type="email"
                                 id="email"
+                                name="email"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 placeholder="your@email.com"
@@ -61,6 +88,7 @@ export default function ContactSection() {
                         <label htmlFor="message">Message</label>
                         <textarea
                             id="message"
+                            name="message"
                             value={formData.message}
                             onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                             placeholder="Tell me about your project..."
@@ -68,6 +96,18 @@ export default function ContactSection() {
                             required
                         />
                     </div>
+
+                    {submitStatus === 'success' && (
+                        <div className="form-message success">
+                            Thank you for your message! I&apos;ll get back to you soon.
+                        </div>
+                    )}
+
+                    {submitStatus === 'error' && (
+                        <div className="form-message error">
+                            Something went wrong. Please try again or email me directly.
+                        </div>
+                    )}
 
                     <button type="submit" className="submit-btn" disabled={isSubmitting}>
                         {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -79,7 +119,7 @@ export default function ContactSection() {
                         <i className="fa-solid fa-envelope"></i>
                         <div>
                             <h4>Email</h4>
-                            <a href="mailto:freelancersoftuae@gmail.com">freelancersoftuae@gmail.com</a>
+                            <a href="mailto:imkhuzaifaahmad@hotmail.com">imkhuzaifaahmad@hotmail.com</a>
                         </div>
                     </div>
 
