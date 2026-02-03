@@ -11,8 +11,8 @@ const works = [
         title: 'Vedis Berlin',
         year: '2025',
         link: 'https://vedis.berlin/',
-        use3D: true,
-        splineScene: 'https://prod.spline.design/oo6IxFu5FBdpQCfJ/scene.splinecode',
+        use3D: false, // Set to true when you have a valid Spline scene URL
+        splineScene: '', // Add your Spline scene URL here
     },
     {
         id: 2,

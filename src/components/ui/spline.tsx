@@ -1,8 +1,16 @@
 'use client';
 
-import { Suspense, lazy } from 'react';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 
-const Spline = lazy(() => import('@splinetool/react-spline'));
+const Spline = dynamic(() => import('@splinetool/react-spline'), {
+    ssr: false,
+    loading: () => (
+        <div className="spline-loading">
+            <div className="loading-spinner"></div>
+        </div>
+    ),
+});
 
 interface SplineSceneProps {
     scene: string;
@@ -10,15 +18,21 @@ interface SplineSceneProps {
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
+    const [hasError, setHasError] = useState(false);
+
+    if (hasError) {
+        return (
+            <div className="spline-loading">
+                <div className="loading-spinner"></div>
+            </div>
+        );
+    }
+
     return (
-        <Suspense
-            fallback={
-                <div className="spline-loading">
-                    <div className="loading-spinner"></div>
-                </div>
-            }
-        >
-            <Spline scene={scene} className={className} />
-        </Suspense>
+        <Spline
+            scene={scene}
+            className={className}
+            onError={() => setHasError(true)}
+        />
     );
 }
