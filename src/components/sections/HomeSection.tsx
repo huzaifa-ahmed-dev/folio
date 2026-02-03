@@ -1,6 +1,8 @@
 'use client';
 
-import Image from 'next/image';
+import { SplineScene } from '@/components/ui/spline';
+import { Card } from '@/components/ui/card';
+import { Spotlight } from '@/components/ui/spotlight';
 
 export default function HomeSection() {
     return (
@@ -21,15 +23,18 @@ export default function HomeSection() {
                 </div>
 
                 <div className="home-visual">
-                    <div className="video-wrapper">
-                        <Image
-                            src="/images/teddy-bear-video.gif"
-                            alt="Animation"
-                            width={300}
-                            height={300}
-                            className="home-animation"
+                    <Card className="spline-card">
+                        <Spotlight
+                            className="spline-spotlight"
+                            fill="white"
                         />
-                    </div>
+                        <div className="spline-wrapper">
+                            <SplineScene
+                                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                                className="spline-scene"
+                            />
+                        </div>
+                    </Card>
                 </div>
             </div>
         </section>
