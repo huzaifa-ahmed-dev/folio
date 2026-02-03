@@ -3,24 +3,24 @@
 const experiences = [
     {
         id: 1,
-        role: 'Senior Full Stack Developer',
+        role: 'Frontend Designer',
         company: 'Smart Print Solution',
-        period: '2022 - Present',
-        description: 'Leading development of web applications using React, Next.js, and Node.js.',
+        period: '2022 - 2025',
+        description: 'Crafts responsive, user-focused interfaces with clean code and pixel-perfect design execution.',
     },
     {
         id: 2,
-        role: 'Full Stack Developer',
-        company: 'Startup Inc.',
-        period: '2020 - 2022',
-        description: 'Built scalable web applications and APIs for various clients.',
+        role: 'Web Designer',
+        company: 'Epic Studio',
+        period: '2021 - 2022',
+        description: 'Designs visually engaging, intuitive websites that balance aesthetics, usability, and brand identity.',
     },
     {
         id: 3,
-        role: 'Frontend Developer',
-        company: 'Digital Agency',
-        period: '2018 - 2020',
-        description: 'Developed responsive websites and user interfaces.',
+        role: 'IT Support Specialist',
+        company: 'Shift Enterprises',
+        period: '2020 - 2021',
+        description: 'Provides reliable technical support, troubleshooting hardware, software, and system issues efficiently.',
     },
 ];
 
