@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { SplineScene } from '@/components/ui/spline';
 
 const works = [
     {
@@ -10,6 +11,8 @@ const works = [
         title: 'Vedis Berlin',
         year: '2025',
         link: 'https://vedis.berlin/',
+        use3D: true,
+        splineScene: 'https://prod.spline.design/oo6IxFu5FBdpQCfJ/scene.splinecode',
     },
     {
         id: 2,
@@ -17,7 +20,8 @@ const works = [
         category: 'Mobile App',
         title: 'Crypto Wallet',
         year: '2024',
-        link: '#', // Add your link here
+        link: '#',
+        use3D: false,
     },
     {
         id: 3,
@@ -25,7 +29,8 @@ const works = [
         category: 'UI/UX Design',
         title: 'E-Commerce Platform',
         year: '2024',
-        link: '#', // Add your link here
+        link: '#',
+        use3D: false,
     },
 ];
 
@@ -47,13 +52,22 @@ export default function WorksSection() {
                         className="work-card"
                     >
                         <div className="work-image">
-                            <Image
-                                src={work.image}
-                                alt={work.title}
-                                width={400}
-                                height={300}
-                                className="work-img"
-                            />
+                            {work.use3D && work.splineScene ? (
+                                <div className="work-spline-container">
+                                    <SplineScene
+                                        scene={work.splineScene}
+                                        className="work-spline"
+                                    />
+                                </div>
+                            ) : (
+                                <Image
+                                    src={work.image}
+                                    alt={work.title}
+                                    width={400}
+                                    height={300}
+                                    className="work-img"
+                                />
+                            )}
                         </div>
                         <div className="work-content">
                             <div className="work-info">

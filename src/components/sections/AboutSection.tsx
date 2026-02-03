@@ -4,7 +4,7 @@ const experiences = [
     {
         id: 1,
         role: 'Senior Full Stack Developer',
-        company: 'Tech Company',
+        company: 'Smart Print Solution',
         period: '2022 - Present',
         description: 'Leading development of web applications using React, Next.js, and Node.js.',
     },
