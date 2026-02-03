@@ -29,8 +29,8 @@ export default function InfoBox() {
                 <div className="profile-info">
                     <h2>Huzaifa Ahmed</h2>
                     <p className="title">Full Stack Developer</p>
-                    <a href="mailto:freelancersoftuae@gmail.com" className="email">
-                        freelancersoftuae@gmail.com
+                    <a href="mailto:imkhuzaifaahmad@hotmail.com" className="email">
+                        imkhuzaifaahmad@hotmail.com
                     </a>
                 </div>
 
